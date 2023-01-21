@@ -1,7 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { TextInput } from "../../components";
+import { MessageItem, TextInput } from "../../components";
+
+import './style.css';
 
 function withParams(Component) {
     return (props) => <Component {...props} params={useParams()}/>;
@@ -26,16 +28,18 @@ class Discussion extends React.Component {
     }
 
     render() {
+        var id = -1;
         const renderMessages = this.state.items.map((message) => {
-            return <p>{message.text}</p>;
+            id++;
+            return <MessageItem text={message.text} key={id} senderId={id}/>;
         })
         return(
-            <div>
-                <h1>{this.state.topic}</h1>
+            <div className="main-container">
+                <h1 className="topic-text">{this.state.topic}</h1>
                 <br/>
                 {renderMessages}
                 <br/>
-                <p>Osallistu keskusteluun:</p>
+                <p className="send-message-text">Osallistu keskusteluun:</p>
                 <TextInput onSend={(value) => {
                     axios.post('/api/courses/'+this.props.params.courseId+'/'+this.props.params.threadId,
                     {message: value})

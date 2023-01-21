@@ -1,5 +1,7 @@
 import React from "react";
 
+import './style.css';
+
 class TextInput extends React.Component {
 
     constructor(props) {
@@ -10,11 +12,14 @@ class TextInput extends React.Component {
     render() {
         return(
             <div>
-                <input type={"text"} value={this.state.textBoxValue}
+                <input className={"input-box"} type={"text"} value={this.state.textBoxValue}
                  onChange={(event) => this.setState({textBoxValue: event.target.value})}/>
-                <button onClick={() => {
+                <button className={"ready-button"} onClick={() => {
+                    if(!(this.state.textBoxValue === "")) {
                     this.props.onSend(this.state.textBoxValue)
-                    this.setState({textBoxValue: ""})}}>Ok</button>
+                    this.setState({textBoxValue: ""})
+                    }
+                }}>OK</button>
             </div>
         );
     }

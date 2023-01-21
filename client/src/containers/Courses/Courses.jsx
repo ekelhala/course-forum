@@ -3,6 +3,8 @@ import axios from "axios";
 
 import { List, ListItem } from "../../components";
 
+import './style.css';
+
 class Courses extends React.Component {
 
     constructor(props) {
@@ -23,7 +25,7 @@ class Courses extends React.Component {
         })
         return(
             <div>
-                <h1>Kurssit</h1>
+                <h1 className="main-heading">Kurssit</h1>
                 <List>
                     {coursesList}
                 </List>

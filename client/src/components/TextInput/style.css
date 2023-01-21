@@ -1,0 +1,22 @@
+.ready-button {
+    background-color: #3a85fc;
+    color: #dedede;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition-property: background-color;
+    transition-duration: 300ms;
+    outline: none;
+    border: none;
+}
+.ready-button:hover {
+    background-color: #3974d4;
+}
+
+.input-box {
+    background-color: #dedede;
+}

@@ -1,0 +1,14 @@
+.main-container {
+    font-family: Arial, Helvetica, sans-serif;
+}
+.topic-text {
+    font-size: 25px;
+    font-weight: 300;
+    color: #ffffff;
+    padding-left: 10px;
+}
+.send-message-text {
+    font-size: 18px;
+    color: #ffffff;
+    padding-left: 10px;
+}

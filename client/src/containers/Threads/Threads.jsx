@@ -3,6 +3,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ListItem, TextInput } from "../../components";
 
+import './style.css';
+
 function withParams(Component) {
     return (props) => <Component {...props} params={useParams()}/>;
 }
@@ -30,10 +32,10 @@ class Threads extends React.Component {
             return <ListItem text={thread.name} link={'/'+this.props.params.courseId+'/'+thread.id}/>;
         })
         return(
-            <div>
-                <h1>Viestiketjut</h1>
+            <div className="threads-container">
+                <h1 className="threads-heading">Viestiketjut</h1>
                 {threadsList}
-                <p>Luo uusi ketju</p>
+                <p className="threads-new-text">Luo uusi ketju</p>
                 <TextInput onSend={(value) => {
                     axios.post('/api/courses/'+this.props.params.courseId,
                     {threadName: value})

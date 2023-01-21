@@ -7,12 +7,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import './style.css';
+
 class ListItem extends React.Component {
 
     render() {
         return(
-            <div>
-                <Link to={this.props.link}>{this.props.text}</Link>
+            <div className="link-container">
+                <Link className="link-text" to={this.props.link}>{this.props.text}</Link>
             </div>
         );
     }
