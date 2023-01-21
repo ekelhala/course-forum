@@ -17,4 +17,4 @@ app.use(express.static('client/build'));
 app.use('/api', courseHandler);
 
 start();
-app.listen(process.env.PORT, () => {});
+app.listen(process.env.PORT||PORT, () => {});
