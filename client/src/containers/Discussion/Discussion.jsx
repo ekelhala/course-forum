@@ -3,11 +3,6 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { TextInput } from "../../components";
 
-axios.defaults.baseURL = 'https://course-forum.herokuapp.com';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.withCredentials = true;
-
 function withParams(Component) {
     return (props) => <Component {...props} params={useParams()}/>;
 }

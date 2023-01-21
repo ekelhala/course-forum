@@ -11,7 +11,7 @@ async function start() {
     mongoose.connect(process.env.MONGODB_URI);
 }
 
-app.use(cors({credentials: true}));
+app.use(cors({credentials:true}));
 app.use(express.json());
 app.use(express.static('client/build'));
 app.use('/api', courseHandler);

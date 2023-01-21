@@ -3,11 +3,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { ListItem, TextInput } from "../../components";
 
-axios.defaults.baseURL = 'https://course-forum.herokuapp.com';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.withCredentials = true;
-
 function withParams(Component) {
     return (props) => <Component {...props} params={useParams()}/>;
 }
@@ -20,6 +15,10 @@ class Threads extends React.Component {
     }
 
     componentDidMount() {
+        this.loadThreads();
+    }
+
+    loadThreads() {
         axios.get('/api/courses/'+this.props.params.courseId)
         .then((response) => {
             this.setState({items: response.data})
@@ -37,7 +36,11 @@ class Threads extends React.Component {
                 <p>Luo uusi ketju</p>
                 <TextInput onSend={(value) => {
                     axios.post('/api/courses/'+this.props.params.courseId,
-                    {threadName: value});
+                    {threadName: value})
+                    .then((response) => {
+                        this.loadThreads();
+                        this.forceUpdate();
+                    });
                 }}/>
             </div>
         );

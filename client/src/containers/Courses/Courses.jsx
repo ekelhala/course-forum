@@ -3,11 +3,6 @@ import axios from "axios";
 
 import { List, ListItem } from "../../components";
 
-axios.defaults.baseURL = 'https://course-forum.herokuapp.com';
-axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.withCredentials = true;
-
 class Courses extends React.Component {
 
     constructor(props) {
