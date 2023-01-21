@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { TextInput } from "../../components";
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'http://localhost:'+process.env.PORT||8000;
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.withCredentials = true;
