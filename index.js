@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-//require('dotenv').config();
+require('dotenv').config();
 const mongoose = require('mongoose');
 const courseHandler = require('./courses');
 
@@ -11,10 +11,10 @@ async function start() {
     mongoose.connect(process.env.MONGODB_URI);
 }
 
-app.use(cors({origin: /http:\/\/localhost:\d\d\d\d$/, credentials: true}));
+app.use(cors({credentials: true}));
 app.use(express.json());
 app.use(express.static('client/build'));
 app.use('/api', courseHandler);
 
 start();
-app.listen(PORT, () => {});
+app.listen(process.env.PORT, () => {});
