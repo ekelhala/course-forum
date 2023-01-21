@@ -2,8 +2,6 @@
 A list which holds ListItem-components */
 
 import React from "react";
-import ListItem from "../ListItem/ListItem";
-import style from './style.css';
 
 class List extends React.Component {
 
