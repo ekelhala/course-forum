@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const MessageSchema = new Schema({
-    text: String
+    text: String,
+    timePosted: Date
 });
 
 const ThreadSchema = new Schema({

@@ -1,11 +1,15 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const {CourseSchema} = require('./models/models');
 const router = express.Router();
 
+require('dotenv').config();
+
 const Course = mongoose.model('Course', CourseSchema);
 
 router.use(express.json());
+router.use(cookieParser(process.env.COOKIE_SECRET));
 router.use((req, res, next) => {
     next();
 });
@@ -34,8 +38,14 @@ router.get('/courses/:courseid', (request, response) => {
 
 //Palauttaa id:n avulla määritellyn kurssin sisältämän keskustelun aiheen ja viestit
 router.get('/courses/:courseid/:discussionid', (request, response) => {
+    var canSendMessage = true;
+    if(request.signedCookies['lastPost'] != undefined) {
+        if((Date.now() - request.signedCookies['lastPost']) < 180000) {
+            canSendMessage = false;
+        }
+    }
     Course.findById(request.params.courseid, (error, result) => {
-        let resultObj = {topic: "", messages: []};
+        let resultObj = {topic: "", messages: [], canParticipate: canSendMessage};
         for(i = 0; i < result.discussions.length; i++) {
             if(result.discussions[i].id == request.params.discussionid) {
                 resultObj.topic = result.discussions[i].name;
@@ -48,17 +58,32 @@ router.get('/courses/:courseid/:discussionid', (request, response) => {
 
 //Lähettää uuden viestin keskusteluun
 router.post('/courses/:courseId/:discussionId', (request, response) => {
-    const messageObject = {text: request.body.message};
-    Course.findById(request.params.courseId, (error, result) => {
-        for(i = 0; i < result.discussions.length; i++) {
-            if(result.discussions[i].id == request.params.discussionId) {
-                result.discussions[i].messages.push(messageObject);
-                result.save();
-                break;                
-            }
+    var allowMessage = false;
+    if(request.signedCookies['lastPost'] == undefined) {
+        response.cookie('lastPost', Date.now(), {httpOnly: true, signed:true, maxAge: 180000});
+        allowMessage = true;
+    }
+    else {
+        if((Date.now() - request.signedCookies['lastPost']) < 180000) {
+            response.status(400).send("Don't spam! You can send one message every 3 minutes");
         }
-        response.status(200).send("Message sent!");
-    });
+        else {
+            response.cookie('lastPost', Date.now(), {httpOnly: true, signed:true, maxAge:180000});
+            allowMessage = true;
+        }
+    }
+    if(allowMessage) {
+        const messageObject = {'text': request.body.message, 'timePosted': new Date()};
+        Course.findById(request.params.courseId, (error, result) => {
+            for(i = 0; i < result.discussions.length; i++) {
+                if(result.discussions[i].id == request.params.discussionId) {
+                    result.discussions[i].messages.push(messageObject);
+                    result.save();
+                }
+            }
+            response.status(200).send(messageObject);
+        });
+    }
 });
 
 //Aloittaa uuden keskustelun annetulla kurssilla
