@@ -12,3 +12,9 @@
     color: #ffffff;
     padding-left: 10px;
 }
+.message-box-container {
+    display: flex;
+    justify-content: center;
+    background-color: #242424;
+    width: 100%;
+}

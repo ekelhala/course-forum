@@ -51,7 +51,7 @@ class Discussion extends React.Component {
                 <br/>
                 {renderMessages}
                 <br/>
-                <p className="send-message-text">Osallistu keskusteluun:</p>
+                <div className="message-box-container">
                 <div style={{display: this.state.showMsgBox ? "block":"none"}}>
                 <TextInput onSend={(value) => {
                     axios.post('/api/courses/'+this.props.params.courseId+'/'+this.props.params.threadId,
@@ -64,6 +64,7 @@ class Discussion extends React.Component {
                 </div>
                 <div style={{display: this.state.showMsgBox ? "none":"block"}}>
                     <p className="send-message-text">Viestien lähetysväli on 3 minuuttia.</p>
+                </div>
                 </div>
             </div>
         );

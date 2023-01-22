@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { ListItem, TextInput } from "../../components";
+import { ListItem, NameInput } from "../../components";
 
 import './style.css';
 
@@ -36,7 +36,7 @@ class Threads extends React.Component {
                 <h1 className="threads-heading">Viestiketjut</h1>
                 {threadsList}
                 <p className="threads-new-text">Luo uusi ketju</p>
-                <TextInput onSend={(value) => {
+                <NameInput onSend={(value) => {
                     axios.post('/api/courses/'+this.props.params.courseId,
                     {threadName: value})
                     .then((response) => {
