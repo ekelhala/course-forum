@@ -4,6 +4,7 @@
     justify-content: flex-start;
     background-color: #303030;
     padding-left: 7px;
+    padding-right: 7px;
     padding-bottom: 10px;
     margin-bottom: 3px;
 }
@@ -17,13 +18,19 @@
 .message-timestamp {
     font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: 100;
+    font-weight: 200;
 }
 .message-timestamp-container {
     display: flex;
     align-items: center;
     column-gap: 5px;
     color: #dedede;
-    align-self: flex-end;
     padding-right: 10px;
+}
+.message-info-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
 }

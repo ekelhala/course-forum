@@ -1,6 +1,8 @@
 .ready-button {
+    text-align: center;
     background-color: #3a85fc;
     color: #dedede;
+    font-family: Arial, Helvetica, sans-serif;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 25px;
@@ -16,7 +18,12 @@
 .ready-button:hover {
     background-color: #3974d4;
 }
-
+.ready-button-text {
+    display: flex;
+    align-items: center;
+    column-gap: 3px;
+    font-weight: bold;
+}
 .input-box {
     background-color:#303030;
     color: #dedede;

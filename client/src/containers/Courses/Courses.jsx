@@ -26,6 +26,7 @@ class Courses extends React.Component {
         return(
             <div>
                 <h1 className="main-heading">Kurssit</h1>
+                <p className="main-heading-small">Kysy, vastaa ja keskustele anonyymisti</p>
                 <List>
                     {coursesList}
                 </List>

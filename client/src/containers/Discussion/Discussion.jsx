@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { MessageItem, TextInput } from "../../components";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 import './style.css';
 
@@ -63,7 +64,10 @@ class Discussion extends React.Component {
                 }}/>
                 </div>
                 <div style={{display: this.state.showMsgBox ? "none":"block"}}>
-                    <p className="send-message-text">Viestien lähetysväli on 3 minuuttia.</p>
+                    <div className="send-message-text-container">
+                        <AiFillCloseCircle size={"1.5em"} color={"red"}/>
+                        <p className="send-message-text">Viestien lähetysväli on 3 minuuttia.</p>
+                    </div>
                 </div>
                 </div>
             </div>

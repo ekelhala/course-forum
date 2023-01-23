@@ -7,19 +7,22 @@
     color: #ffffff;
     text-decoration: none;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #3d3b3b;
+    font-size: 16px;
+    background-color: #3a85fc;
     padding-bottom: 10px;
     padding-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
     margin-left: 15px;
     margin-right: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
     cursor: pointer;
     width: 100%;
-    transition-property: background-color;
-    transition-duration: 300ms;
+    transition-property: background-color box-shadow;
+    transition-duration: 400ms;
+    box-shadow: 1px 2px 5px #000000;
 }
 .link-text:hover {
-    background-color: #242323;
+    background-color: #3974d4;
+    box-shadow: none;
 }

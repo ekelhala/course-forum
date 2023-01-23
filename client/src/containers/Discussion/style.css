@@ -12,6 +12,11 @@
     color: #ffffff;
     padding-left: 10px;
 }
+.send-message-text-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 .message-box-container {
     display: flex;
     justify-content: center;

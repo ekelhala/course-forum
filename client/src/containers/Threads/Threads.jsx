@@ -34,16 +34,18 @@ class Threads extends React.Component {
         return(
             <div className="threads-container">
                 <h1 className="threads-heading">Viestiketjut</h1>
-                {threadsList}
-                <p className="threads-new-text">Luo uusi ketju</p>
-                <NameInput onSend={(value) => {
-                    axios.post('/api/courses/'+this.props.params.courseId,
-                    {threadName: value})
-                    .then((response) => {
-                        this.loadThreads();
-                        this.forceUpdate();
-                    });
-                }}/>
+                    {threadsList}
+                <div className="threads-new-box">
+                    <p className="threads-new-text">Luo uusi ketju</p>
+                    <NameInput onSend={(value) => {
+                        axios.post('/api/courses/'+this.props.params.courseId,
+                        {threadName: value})
+                        .then((response) => {
+                            this.loadThreads();
+                            this.forceUpdate();
+                        });
+                    }}/>
+                </div>
             </div>
         );
     }

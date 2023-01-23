@@ -1,5 +1,7 @@
 import React from "react";
 
+import {AiOutlinePlus} from "react-icons/ai";
+
 import './style.css';
 
 class NameInput extends React.Component {
@@ -19,7 +21,7 @@ class NameInput extends React.Component {
                     this.props.onSend(this.state.textBoxValue)
                     this.setState({textBoxValue: ""})
                     }
-                }}>OK</button>
+                }}><span className="ready-button-text">Luo <AiOutlinePlus size={"1.3em"}/></span></button>
             </div>
         );
     }
